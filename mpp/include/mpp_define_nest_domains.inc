@@ -136,8 +136,13 @@ subroutine mpp_define_nest_domains(nest_domain, domain_fine, domain_coarse, tile
   else if( npes_fine + npes_coarse == npes ) then
      concurrent = .true.
   else
-     call mpp_error(FATAL, "mpp_domains_define.inc: size(pelist_coarse) .NE. size(pelist) and "// &
-              "size(pelist_coarse)+size(pelist_fine) .NE. size(pelist)")
+     ! William Ramstrom - Prior to multiple nest capability, this case would be
+     !  a fatal error, as we would not otherwise expect any PEs outside of a coarse domain
+     !  and a single nested domain. (paraphrased by Kyle Ahern, applied 07 May 2020)
+     !  Validation of the number of PEs now occurs in init_nesting() in fv_control.F90.
+     ! Kyle Ahern - Should the else-if block now be merged with this redundant else block?
+     !  Or will there be later additions to these conditions beside the concurrent flag?
+     concurrent = .true.
   endif
 
   !--- to confirm integer refinement.

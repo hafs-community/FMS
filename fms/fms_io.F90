@@ -4381,10 +4381,12 @@ subroutine restore_state_one_field(fileObj, id_field, directory, nonfatal_missin
      end do
   end if
   if (nfile == 0) then ; if (fatal_missing_files) then
-     call mpp_error(FATAL, "fms_io(restore_state_all): unable to find any restart files "// &
+     ! RAMSTROM corrected subroutine name
+     call mpp_error(FATAL, "fms_io(restore_state_one_field): unable to find any restart files "// &
         "specified by "//trim(restartpath))
   elseif (mpp_pe() == mpp_root_pe()) then
-     call mpp_error(WARNING, "fms_io(restore_state_all): unable to find any restart files "// &
+     ! RAMSTROM corrected subroutine name
+     call mpp_error(WARNING, "fms_io(restore_state_one_field): unable to find any restart files "// &
         "specified by "//trim(restartpath))
   endif ; endif
 
