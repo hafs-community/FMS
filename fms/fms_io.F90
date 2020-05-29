@@ -57,6 +57,10 @@ module fms_io_mod
 ! because default values of both flags are .true., the default behavior of the entire model is
 ! to use netCDF IO mode. To turn off netCDF restart, simply set fms_netcdf_restart to .false.
 !
+! Modifications:
+! 05/07/2020 -- Applied corrections to error handling in restore_state_one_field
+!               subroutine. Bill Ramstrom, AOML/HRD ; Kyle Ahern, AOML/HRD
+!
 !</DESCRIPTION>
 ! <NAMELIST NAME="fms_io_nml">
 ! <DATA NAME="threading_read" TYPE="character">
@@ -101,6 +105,8 @@ module fms_io_mod
 ! </DATA>
 
 !</NAMELIST>
+
+
 
 use mpp_io_mod,      only: mpp_open, mpp_close, mpp_io_init, mpp_io_exit, mpp_read, mpp_write
 use mpp_io_mod,      only: mpp_write_meta, mpp_get_info, mpp_get_atts, mpp_get_fields

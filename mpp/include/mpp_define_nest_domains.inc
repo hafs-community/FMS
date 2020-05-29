@@ -19,7 +19,13 @@
 !* You should have received a copy of the GNU Lesser General Public
 !* License along with FMS.  If not, see <http://www.gnu.org/licenses/>.
 !***********************************************************************
-
+!
+! Modifications:
+! 05/07/2020 -- Allow for multiple nests in subroutine mpp_define_nest_domains
+!               by deferring check for the number of PEs used to fv_control.F90,
+!               which has the necessary context to carry out the check.
+!               Bill Ramstrom, AOML/HRD ; Kyle Ahern, AOML/HRD
+!
 !#############################################################################
 ! Currently the contact will be limited to overlap contact.
 subroutine mpp_define_nest_domains(nest_domain, domain_fine, domain_coarse, tile_fine, tile_coarse, &
