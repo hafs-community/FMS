@@ -1,16 +1,29 @@
-# This is an automake file for the test_fms/data_override directory of the FMS
+#***********************************************************************
+#*                   GNU Lesser General Public License
+#*
+#* This file is part of the GFDL Flexible Modeling System (FMS).
+#*
+#* FMS is free software: you can redistribute it and/or modify it under
+#* the terms of the GNU Lesser General Public License as published by
+#* the Free Software Foundation, either version 3 of the License, or (at
+#* your option) any later version.
+#*
+#* FMS is distributed in the hope that it will be useful, but WITHOUT
+#* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+#* FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+#* for more details.
+#*
+#* You should have received a copy of the GNU Lesser General Public
+#* License along with FMS.  If not, see <http://www.gnu.org/licenses/>.
+#***********************************************************************
+
+# This is an automake file for the test_fms/time_manager directory of the FMS
 # package.
 
 # uramirez, Ed Hartnett
 
-LOG_DRIVER = env AM_TAP_AWK='$(AWK)' $(SHELL) \
-             $(top_srcdir)/tap-driver.sh
-
-# Set srcdir as evironment variable to be reference in the job script
-TESTS_ENVIRONMENT = srcdir="$(top_srcdir)"
-
 # Find the fms_mod.mod file.
-AM_CPPFLAGS = -I${top_builddir}/mpp -I${top_builddir}/fms \
+AM_CPPFLAGS = -I${top_builddir}/mpp -I${top_builddir}/fms	\
 -I${top_builddir}/constants -I${top_builddir}/time_manager
 
 # Link to the FMS library.
@@ -23,11 +36,10 @@ check_PROGRAMS = test_time_manager
 test_time_manager_SOURCES = test_time_manager.F90
 
 # Run the test program.
-TESTS = test_time_manager.sh
+TESTS = test_time_manager2.sh
 
 # These files will be included in the distribution.
-EXTRA_DIST = test_time_manager.sh test_time_manager.bats \
-input_base.nml
+EXTRA_DIST = test_time_manager2.sh input_base.nml
 
 # Clean up
 CLEANFILES = input.nml *.out*

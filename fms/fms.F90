@@ -139,7 +139,8 @@ use          mpp_mod, only:  mpp_error, NOTE, WARNING, FATAL,    &
                              mpp_set_stack_size,                 &
                              stdin, stdout, stderr, stdlog,      &
                              mpp_error_state, lowercase,         &
-                             uppercase, mpp_broadcast, input_nml_file
+                             uppercase, mpp_broadcast, input_nml_file, &
+                             get_unit, read_input_nml
 
 use  mpp_domains_mod, only:  domain2D, mpp_define_domains, &
                              mpp_update_domains, GLOBAL_DATA_DOMAIN, &
@@ -163,6 +164,8 @@ use fms_io_mod, only : fms_io_init, fms_io_exit, field_size, &
                        open_file, open_direct_file, string, get_mosaic_tile_grid, &
                        get_mosaic_tile_file, get_global_att_value, file_exist, field_exist, &
                        write_version_number
+
+use fms2_io_mod, only: fms2_io_init
 
 use memutils_mod, only: print_memuse_stats, memutils_init
 
@@ -201,7 +204,8 @@ public :: mpp_error, NOTE, WARNING, FATAL, &
           mpp_error_state,                 &
           mpp_pe, mpp_npes, mpp_root_pe,   &
           stdin, stdout, stderr, stdlog,   &
-          mpp_chksum
+          mpp_chksum, get_unit, read_input_nml
+public :: input_nml_file
 public :: mpp_clock_id, mpp_clock_begin, mpp_clock_end
 public :: MPP_CLOCK_SYNC, MPP_CLOCK_DETAILED
 public :: CLOCK_COMPONENT, CLOCK_SUBCOMPONENT, &
@@ -366,7 +370,7 @@ subroutine fms_init (localcomm )
     endif
     call mpp_domains_init
     call fms_io_init
-
+    call fms2_io_init ()
 !---- read namelist input ----
 
     call nml_error_init  ! first initialize namelist iostat error codes

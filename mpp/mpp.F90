@@ -22,19 +22,6 @@
 ! AUTHOR: V. Balaji (V.Balaji@noaa.gov)
 !         SGI/GFDL Princeton University
 !
-! This program is free software; you can redistribute it and/or modify
-! it under the terms of the GNU General Public License as published by
-! the Free Software Foundation; either version 2 of the License, or
-! (at your option) any later version.
-!
-! This program is distributed in the hope that it will be useful,
-! but WITHOUT ANY WARRANTY; without even the implied warranty of
-! MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-! GNU General Public License for more details.
-!
-! For the full text of the GNU General Public License,
-! write to: Free Software Foundation, Inc.,
-!           675 Mass Ave, Cambridge, MA 02139, USA.
 !-----------------------------------------------------------------------
 module mpp_mod
 !a generalized communication package for use with shmem and MPI
@@ -582,6 +569,8 @@ private
       module procedure mpp_type_create_int8
       module procedure mpp_type_create_real4
       module procedure mpp_type_create_real8
+      module procedure mpp_type_create_cmplx4
+      module procedure mpp_type_create_cmplx8
       module procedure mpp_type_create_logical4
       module procedure mpp_type_create_logical8
   end interface mpp_type_create
@@ -823,18 +812,24 @@ private
      module procedure mpp_alltoall_int8
      module procedure mpp_alltoall_real4
      module procedure mpp_alltoall_real8
+     module procedure mpp_alltoall_cmplx4
+     module procedure mpp_alltoall_cmplx8
      module procedure mpp_alltoall_logical4
      module procedure mpp_alltoall_logical8
      module procedure mpp_alltoall_int4_v
      module procedure mpp_alltoall_int8_v
      module procedure mpp_alltoall_real4_v
      module procedure mpp_alltoall_real8_v
+     module procedure mpp_alltoall_cmplx4_v
+     module procedure mpp_alltoall_cmplx8_v
      module procedure mpp_alltoall_logical4_v
      module procedure mpp_alltoall_logical8_v
      module procedure mpp_alltoall_int4_w
      module procedure mpp_alltoall_int8_w
      module procedure mpp_alltoall_real4_w
      module procedure mpp_alltoall_real8_w
+     module procedure mpp_alltoall_cmplx4_w
+     module procedure mpp_alltoall_cmplx8_w
      module procedure mpp_alltoall_logical4_w
      module procedure mpp_alltoall_logical8_w
   end interface
